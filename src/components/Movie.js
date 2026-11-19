@@ -2,16 +2,17 @@ import { useState } from 'react';
 import './Movie.css';
 
 function Movie(props) {
+    const [failedPoster, setFailedPoster] = useState(null);
     let poster;
 
-    if (!props.Poster || props.Poster === 'N/A') {
+    if (!props.Poster || props.Poster === 'N/A' || props.Poster === failedPoster) {
         poster = <div className='poster-placeholder'>Нет постера</div>;
     } else {
         poster = (
             <img
                 className="movie-poster"
                 src={props.Poster}
-                alt={'Постер фильма "${props.Title}"'}
+                alt={`Постер фильма "${props.Title}"`}
                 onError={() => setFailedPoster(props.Poster)}
             />
         );

@@ -16,13 +16,15 @@ class Main extends React.Component {
     }
 
     render() {
+        const isLoading = this.state.movies.length === 0;
+
         return (
-            <main>
-                {
-                    this.state.movies.length == 0 ?
-                    <Preloader/> :
+            <main className={isLoading ? 'loading' : undefined}>
+                {isLoading ? (
+                    <Preloader />
+                ) : (
                     <MovieList movies={this.state.movies} />
-                }
+                )}
             </main>
         )
     }
