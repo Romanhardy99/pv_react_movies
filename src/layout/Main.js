@@ -15,25 +15,32 @@ class Main extends React.Component {
             .then(response => response.json())
             .then(data => this.setState({ movies: data.Search }))
     }
-searchMovie = (str) =>
-{
-     fetch(`https://www.omdbapi.com/?s=${str}&apikey=f643dbcc`)
+    searchMovie = (str) => {
+        fetch(`https://www.omdbapi.com/?s=${str}&apikey=f643dbcc`)
             .then(response => response.json())
             .then(data => this.setState({ movies: data.Search }))
-}
+    }
     render() {
-        const isLoading = this.state.movies.length === 0;
 
         return (
-            <main className={isLoading ? 'loading' : undefined}>
-            <Search searchMovie={this.searchMovie}/>
-                {isLoading ? (
-                    <Preloader />
-                ) : (
-                    <MovieList movies={this.state.movies} />
-                )}
+            <main>
+                <Search searchMovie={this.searchMovie} />
+                {
+                    this.state.movies == null ? <h1> Введите поисковой запрос</h1> :
+                    this.state.movies.length == 0 ?
+                    <Preloader /> :
+                            <MovieList movies={this.state.movies} />   
+                }
             </main>
         )
     }
 }
+
 export default Main;
+//const isLoading = this.state.movies.length === 0;
+//<main className={isLoading ? 'loading' : undefined}>
+/*{isLoading ? (
+<Preloader />
+) : (
+<MovieList movies={this.state.movies} />
+)}*/
