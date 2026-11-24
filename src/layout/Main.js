@@ -13,18 +13,18 @@ class Main extends React.Component {
         //функция неявно вызывается всякий раз, когда компонент смонтировался на страницу
         fetch('https://www.omdbapi.com/?s=The%20Transporter&apikey=f643dbcc')
             .then(response => response.json())
-            .then(data => this.setState({ movies: data.Search }))
+            .then(data => this.setState({ movies: data.Search, count: data.totalResults }))
     }
-    searchMovie = (str, type = 'all') => {
-        fetch(`https://www.omdbapi.com/?s=${str}${type !== 'all' ? `&type=${ type }` : ''}&apikey=f643dbcc`)
+    searchMovie = (str, type = 'all', page) => {
+        fetch(`https://www.omdbapi.com/?s=${str}${type !== 'all' ? `&type=${ type }` : ''}${`&page=${page}`}&apikey=f643dbcc`)
             .then(response => response.json())
-            .then(data => this.setState({ movies: data.Search }))
+            .then(data => this.setState({ movies: data.Search, count: data.totalResults }))
     }
     render() {
 
         return (
             <main>
-                <Search searchMovie={this.searchMovie} />
+                <Search searchMovie={this.searchMovie} totalItems={ this.state.count} />
                 {
                     this.state.movies == null ? <h1> Введите поисковой запрос</h1> :
                     this.state.movies.length == 0 ?
