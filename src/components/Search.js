@@ -19,7 +19,8 @@ class Search extends React.Component {
         this.setState
             (
                 () => ({ type: event.target.dataset.type }),
-                () =>({search:this.props.searchMovie(this.state.search, this.state.type)})
+                // () =>({search:this.props.searchMovie(this.state.search, this.state.type)})
+                () => this.props.searchMovie(this.state.search, this.state.type)
             )
            
         // this.setState
@@ -34,6 +35,7 @@ class Search extends React.Component {
 
     render() {
         return (
+            <div>
             <div className="search">
                 <input type='search'
                     placeholder="Поиск"
@@ -42,12 +44,15 @@ class Search extends React.Component {
                     onKeyUp={this.handleKey}
                 />
                 <button onClick={() => this.props.searchMovie(this.state.search)}>Поиск</button>
+            </div>
+            <div>
                 <div className='radio'>
-                    <input type='radio' name='category' data-type='all'     checked={this.state.type === 'all'}     id="category-movies"    onChange={this.handlerFilter} /><label for="">All</label>
-                    <input type='radio' name='category' data-type='movie'   checked={this.state.type === 'movie'}   id="category-movie"     onChange={this.handlerFilter} /><label for="">Movie</label>
-                    <input type='radio' name='category' data-type='series'  checked={this.state.type === 'series'}  id="category-series"    onChange={this.handlerFilter} /><label for="">Series</label>
-                    <input type='radio' name='category' data-type='game'    checked={this.state.type === 'game'}    id="category-game"      onChange={this.handlerFilter} /><label for="">Game</label>
+                    <label><input type='radio'  name='category' data-type='all'     checked={this.state.type === 'all'}    onChange={this.handlerFilter} />    All</label>
+                    <label><input type='radio'  name='category' data-type='movie'   checked={this.state.type === 'movie'}  onChange={this.handlerFilter} />    Movie</label>
+                    <label><input type='radio'  name='category' data-type='series'  checked={this.state.type === 'series'} onChange={this.handlerFilter} />    Series</label>
+                    <label><input type='radio'  name='category' data-type='game'    checked={this.state.type === 'game'}   onChange={this.handlerFilter} />    Game</label>
                 </div>
+            </div>
             </div>
         )
     }
