@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/pv_react_movies/static/css/main.97655335.css",
+    "main.js": "/pv_react_movies/static/js/main.27aa8fa5.js",
+    "static/js/453.8ba26ab0.chunk.js": "/pv_react_movies/static/js/453.8ba26ab0.chunk.js",
+    "static/media/logo.svg": "/pv_react_movies/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/pv_react_movies/index.html",
+    "main.97655335.css.map": "/pv_react_movies/static/css/main.97655335.css.map",
+    "main.27aa8fa5.js.map": "/pv_react_movies/static/js/main.27aa8fa5.js.map",
+    "453.8ba26ab0.chunk.js.map": "/pv_react_movies/static/js/453.8ba26ab0.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.97655335.css",
+    "static/js/main.27aa8fa5.js"
+  ]
+}
