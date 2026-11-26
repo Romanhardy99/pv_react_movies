@@ -72,4 +72,8 @@
     width:42px;
 }
 
+.btn.page-inactive {
+    background-color: #263d45;
+}
+
 

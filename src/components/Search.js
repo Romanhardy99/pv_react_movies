@@ -45,11 +45,14 @@ class Search extends React.Component {
     }
     render() {
         let itemsPerPage = 10;
-        let totalPages = this.props.totalItems / itemsPerPage;
-        const lastIndex = totalPages <= 10 ? totalPages + 1 : this.state.page + itemsPerPage;
-        const firstIndex = totalPages <= 10 ? lastIndex - itemsPerPage + lastIndex + 1 : lastIndex - itemsPerPage;
+        const totalPages = Math.ceil(this.props.totalItems / itemsPerPage);
+        // const lastIndex = totalPages <= 10 ? totalPages + 1 : this.state.page + itemsPerPage;
+        // const firstIndex = totalPages <= 10 ? lastIndex - itemsPerPage + lastIndex + 1 : lastIndex - itemsPerPage;
+        const activeIndex = this.state.page - 1;
+        const firstIndex = Math.max(0, Math.min(activeIndex - 2, totalPages - 5));
+        const lastIndex = firstIndex + 5;
         let num = [];
-        for (let i = 0; i < totalPages; i++) {
+        for (let i = 1; i <= totalPages; i++) {
             num.push(i);
         }
         return (
@@ -79,7 +82,7 @@ class Search extends React.Component {
                                 (
                                     (element, index) =>
                                     (
-                                        <button className="btn"
+                                        <button className={ element === this.state.page ? "btn" : "btn page-inactive"} 
                                             key={index}
                                             onClick={() => this.setPage(element)}
                                         >
