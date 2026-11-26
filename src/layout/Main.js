@@ -7,7 +7,8 @@ import Search from '../components/Search';
 class Main extends React.Component {
     state =
         {
-            movies: []
+            movies: [],
+            count:0
         }
     componentDidMount() {
         //функция неявно вызывается всякий раз, когда компонент смонтировался на страницу
@@ -16,9 +17,9 @@ class Main extends React.Component {
             .then(data => this.setState({ movies: data.Search, count: data.totalResults }))
     }
     searchMovie = (str, type = 'all', page) => {
-        fetch(`https://www.omdbapi.com/?s=${str}${type !== 'all' ? `&type=${ type }` : ''}${`&page=${page}`}&apikey=f643dbcc`)
+        fetch(`https://www.omdbapi.com/?s=${str}${type !== 'all' ? `&type=${type}` : ''}${`&page=${page}`}&apikey=f643dbcc`)
             .then(response => response.json())
-            .then(data => this.setState({ movies: data.Search, count: data.totalResults }))
+            .then(data => this.setState({ movies: data.Search, count: data.totalResults }));
     }
     render() {
 

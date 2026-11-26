@@ -20,22 +20,20 @@ class Search extends React.Component {
                 // () =>({search:this.props.searchMovie(this.state.search, this.state.type)})
                 () => this.props.searchMovie(this.state.search, this.state.type)
             )
-
-        // this.setState
-        //     (
-        //         {
-        //             type: event.target.dataset.type,
-        //             search: this.props.searchMovie(this.state.search, this.state.type)
-        //         }
-        //    )
-
     }
     prevPage = () => {
         this.setState
             (
-                () => ({ this.state.page > 1 ? { page: this.state.page - 1 } : { page: 1 }),
-                () => this.props.searchMovie(this.state.search, this.state.type, this.state.page)
+                () => (this.state.page > 1 ? { page: this.state.page - 1 } : { page: 1 }),
+                () => this.props.searchMovie(this.state.search, this.state.type, this.state.page) 
             )
+
+    }
+    nextPage = () => {
+        this.setState
+        (
+            () => ({ page: this.state.page + 1 }),
+            () => this.props.searchMovie(this.state.search, this.state.type, this.state.page)
         )
     }
     setPage = (num) => {
@@ -75,21 +73,21 @@ class Search extends React.Component {
                 </div>
                 <div className="pagination">
                     <button className="btn" onClick={this.prevPage}>Prev</button>
-                    <div className="page-number">
-                    {
-                        num.slice(firstIndex, lastIndex).map
-                            (
-                                (element, index) =>
+                    <div className="page-numbers">
+                        {
+                            num.slice(firstIndex, lastIndex).map
                                 (
-                                    <button className="btn"
-                                        key={index}
-                                        onClick={() => this.setPage(element)}
-                                    >
-                                        {element}
-                                    </button>
+                                    (element, index) =>
+                                    (
+                                        <button className="btn"
+                                            key={index}
+                                            onClick={() => this.setPage(element)}
+                                        >
+                                            {element}
+                                        </button>
+                                    )
                                 )
-                            )
-                    }
+                        }
                     </div>
                     <button className="btn" onClick={this.nextPage}>Next</button>
                 </div>
